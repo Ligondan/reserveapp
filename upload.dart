@@ -1,44 +1,8 @@
 List<String> _tagItems = [
-    'quam',
-    'elementum',
-    'pulvinar',
-    'etiam',
-    'non',
-    'quam',
-    'lacus',
-    'suspendisse',
-    'faucibus',
-    'interdum',
-    'posuere',
-    'lorem',
-    'ipsum',
-    'dolor',
-    'sit',
-    'amet',
-    'consectetur',
-    'adipiscing',
-    'elit',
-    'duis',
-    'tristique',
-    'sollicitudin',
-    'nibh',
-    'sit',
-    'amet',
-    'commodo',
-    'nulla',
-    'facilisi',
-    'nullam',
-    'vehicula',
-    'ipsum',
-    'a',
-    'arcu',
-    'cursus',
-    'vitae',
-    'congue',
-    'mauris',
-    'rhoncus',
-    'aenean',
-    'vel',
+    'quam','elementum','pulvinar','etiam','non','quam','lacus','suspendisse','faucibus','interdum' 'posuere','lorem',
+    'ipsum','dolor','sit','amet','consectetur','adipiscing','elit','duis','tristique','sollicitudin','nibh','sit',
+    'amet','commodo','nulla','facilisi','nullam','vehicula','ipsum','a','arcu','cursus','vitae','congue','mauris',
+    'rhoncus','aenean','vel',
   ];
           Tags(
             horizontalScroll: true,
@@ -119,7 +83,7 @@ class ImageNetworkRepository {
   Future<void> uploadImageNCreateNewPost(File originImage) async {
     try {
       final File resized = await compute(
-          getResizedImage, originImage); // compute는 메소드명, 거기에 들어갈 파일? 로 전달해주면됨.
+          getResizedImage, originImage); // compute는 메소드명, 거기에 들어갈 파일 로 전달.
       originImage
           .length()
           .then((value) => print('original image size: $value'));
@@ -134,10 +98,10 @@ ImageNetworkRepository imageNetworkRepository
               showModalBottomSheet(
                 context: context,
                 builder: (_) => MyProgressIndicator(),
-                //원래 빌더에 ()안에 context가 와야하는데 context를 사용 안하므로 _ 로 해준다
+                //원래 빌더에 ()안에 context가 와야하는데 context를 사용 안함
                 isDismissible: false,
-                //이 창의 바깥 눌렀을때 끝나게 해줄것이냐
-                enableDrag: false, //드래그를 하게 해줄 것이냐.
+                //이 창의 바깥 눌렀을때 끝나게 해줄것인지
+                enableDrag: false, //드래그를 하게할것인지
               );
               await imageNetworkRepository.uploadImageNCreateNewPost(imageFile);
               Navigator.of(context).pop(); //await 되고 나면 pop으로 꺼짐짐
@@ -154,7 +118,7 @@ class ImageNetworkRepository {
   Future<void> uploadImageNCreateNewPost(File originImage) async {
     try {
       final File resized = await compute(
-          getResizedImage, originImage); // compute는 메소드명, 거기에 들어갈 파일? 로 전달해주면됨.
+          getResizedImage, originImage); // compute는 메소드명, 거기에 들어갈 파일? 로 전달
       originImage
           .length()
           .then((value) => print('original image size: $value'));
@@ -167,7 +131,7 @@ class ImageNetworkRepository {
   Future<StorageTaskSnapshot> uploadImageNCreateNewPost(File originImage, {@required String postKey}) async {
     try {
       final File resized = await compute(
-          getResizedImage, originImage); // compute는 메소드명, 거기에 들어갈 파일? 로 전달해주면됨.
+          getResizedImage, originImage); // compute는 메소드명, 거기에 들어갈 파일 로 전달
       final StorageReference storageReference = FirebaseStorage().ref().child(_getImagePathByPostKey(postKey));
       final StorageUploadTask uploadTask = storageReference.putFile(resized);
       return uploadTask.onComplete;
@@ -192,7 +156,7 @@ post.dart
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return CachedNetworkImage(
-            //flutter의 이미지는 캐시를 안함 창이 바뀔때마다 새로 불러옴. 그래서 저장해놓은 이미지를 쓰기 위해서 이걸 씀.
+            //flutter의 이미지는 캐시를 안함 창이 바뀔때마다 새로 불러옴. 그래서 저장해놓은 이미지 사용
             imageUrl: snapshot.data.toString(),
             placeholder: (BuildContext context, String url) {
               return progress;
