@@ -53,7 +53,7 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     //화면 구성
     return Scaffold(
-      appBar: AppBar(title: const Text('쭈미로운 생활 푸시 알림 예제')),
+      appBar: AppBar(title: const Text('ㅣㅣ')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
